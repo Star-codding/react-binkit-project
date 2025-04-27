@@ -17,12 +17,6 @@ export default function Banner() {
           </div>
         </div>
 
-
-
-
-
-
-
         <div>
           <div className='grid lg:grid-cols-10 grid-cols-4 '>
             <img src="images/Slice-1.jpg" alt="" />
