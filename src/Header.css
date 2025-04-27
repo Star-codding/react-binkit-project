@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+
+
+
+
+.modal{
+    width: 400px;
+    height: 100vh;
+    position: fixed;
+    background: white;
+    color: black;
+    border: 1px solid black;
+    top: 0%;
+   right: -500px;
+   transition: 1s;
+   z-index: 99;
+}
+
+.active{
+    right: 0px !important;
+}
