@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import Footer from './Common/Footer';
 import Header from './Common/Header';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-export default function Product() {
+export default function Product() { 
 
+
+    let pId=useParams().id
+        // console.log(pId)
+    const[singleData,setsingleData]=useState([])
+    console.log(singleData)
+        const singleProduct=()=>{
+            axios.get(`https://dummyjson.com/products/${pId}`)
+            .then((ress)=>{
+                setsingleData(ress.data);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+        
+    useEffect(()=>{
+        singleProduct()
+    },[])
+
+        
     var settings = {
         dots: false,
         infinite: false,
@@ -20,13 +41,13 @@ export default function Product() {
         <>
         <Header/>
         <div className='max-w-[1250px] mx-auto  mt-[20px] mb-[50px]'>
-            <div className='grid lg:grid-cols-[60%_auto]  h-[95vh]'>
+            <div className='grid lg:grid-cols-[60%_auto]  md:h-[95vh]'>
                 <div className='p-[30px] overflow-y-scroll '>
 
                     <div className='max-w-[480px] max-h-[480px] mx-auto'>
-                        <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/94c99c0b-0cb1-4c07-b91d-586c5300945b.jpg?ts=1736856488" alt="" className='w-[100%] h-[100%]' />
+                        <img src={singleData.thumbnail} alt="" className='w-[100%] h-[100%]' />
                     </div>
-                    <div className='    '>
+                    <div className='hidden '>
                         <Slider {...settings}>
                             <div >
                                 <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/da/cms-assets/cms/product/94c99c0b-0cb1-4c07-b91d-586c5300945b.jpg?ts=1736856488" alt="" className='w-[70px]' />
@@ -60,7 +81,7 @@ export default function Product() {
                         </p>
                         <p className='text-[rgb(31, 31, 31)] text-[14px]'>Type</p>
                         <p className='text-[rgb(31, 31, 31);] mb-[8px] font-semibold '>Unit</p>
-                        <p className='text-[rgb(31, 31, 31)] text-[14px]'>1|</p>
+                        <p className='text-[rgb(31, 31, 31)] text-[14px]'>{singleData.stock}</p>
                         <p className='text-[rgb(31, 31, 31);] mb-[8px] font-semibold '>Storage Tips</p>
                         <p className='text-[rgb(31, 31, 31)] text-[14px]'>Refrigerated</p>
                         <p className='text-[rgb(31, 31, 31);] mb-[8px] font-semibold '>FSSAI License</p>
@@ -89,10 +110,12 @@ export default function Product() {
                 </div>
                 <div className='p-[20px] '>
                     <div>
-                        <p className='text-[12px] font-bold '><Link to={"/"} >Home </Link>/ Milk / <span className='text-[rgb(31, 31, 31)]'>Amul Taaza Toned Fresh Milk</span></p>
-                        <h2 className='text-[22px] font-bold mt-[5px]'>Amul Taaza Tooned Fresh Milk</h2>
+                        <p className='text-[12px] font-bold '><Link to={"/"} >Home </Link>/<Link to={"/section"} >Product </Link>/ <span className='text-[rgb(31, 31, 31)]'>{singleData.title}</span></p>
+                        <h2 className='text-[22px] font-bold mt-[5px]'>{singleData.title}</h2>
                         <p className='rounded-[20px] bg-[#ccc] text-[12px] w-[50px] p-[3px] text-center font-bold mt-[5px]'>8 Mins</p>
                         <p className='flex items-center text-[green] text-[19px] mt-[5px]'>View all by Amul <IoIosArrowDroprightCircle /></p>
+
+                        <p className='pt-[15px] text-[20px] '><span className='text-[20px] text-[red] font-bold'>Price :</span> <span className='bg-[yellow] p-[5px]'>${singleData.price}</span></p>
                         <p className='mt-[20px] text-[14px] font-bold'>Select Unit</p>
                         <div className='flex mt-[10px]'>
                             <button className='border p-[6px] rounded-[20px] text-[15px] w-[100px] border-[green]'>1ltr <br />MRP $55</button>

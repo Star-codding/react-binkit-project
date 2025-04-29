@@ -8,7 +8,7 @@ import { CiAt } from "react-icons/ci";
 export default function Footer() {
     return (
         <>
-            <div className='lg:flex justify-evenly max-w-[1500px] mx-auto p-[20px]'>
+            <div className='lg:flex justify-evenly max-w-[1500px] mx-auto p-[20px] '>
                 <div>
                     <h1 className='font-bold text-[22px] mb-[20px]'>Useful Links</h1>
                     <div className='grid grid-cols-3 gap-[20px]  max-w-[350px] p-[10px]'>

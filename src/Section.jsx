@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Header from './Common/Header'
 import Footer from './Common/Footer'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default function Section() {
 
-
+    
 
 
 
@@ -106,6 +107,7 @@ export default function Section() {
                         {data.length > 0 ?
                             data.map((v, i) => {
                                 return (
+                                    <Link to={`/product/${v.id}`}>
                                     <div className=' shadow rounded-[10px] text-left  bg-white p-[10px] '>
                                         <img src={v.thumbnail} alt="" />
                                         <p>{v.title}</p>
@@ -119,6 +121,7 @@ export default function Section() {
                                             </div>
                                         </div>
                                     </div>
+                                    </Link> 
                                 )
                             })
                             :
