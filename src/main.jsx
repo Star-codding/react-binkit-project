@@ -10,6 +10,7 @@ import Slider from './Slider.jsx'
 import Footer from './Common/Footer.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Product from './Product.jsx'
+import PageNotFound from './PageNotFound.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -38,7 +39,11 @@ createRoot(document.getElementById('root')).render(
           </>
 
         } />
+
+        <Route path='*' element={<PageNotFound/>} />
       </Routes>
+
+      
 
 
 

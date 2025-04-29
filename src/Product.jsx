@@ -25,7 +25,7 @@ export default function Product() {
         
     useEffect(()=>{
         singleProduct()
-    },[])
+    },[]) 
 
         
     var settings = {
