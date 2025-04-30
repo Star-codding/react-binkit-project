@@ -11,7 +11,7 @@ import { CiViewList } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import "../Header.css"
 
-import logo from "../assets/images/logo.png"
+import logo from "/public/images/logo.png"
 
 export default function Header() {
   const [showmodal, setshowmodal] = useState(false)
@@ -29,7 +29,7 @@ export default function Header() {
           </div>
           <div className='flex mt-[30px] p-[15px] bg-white rounded-[15px] m-[15px] '>
             <div>
-              <img src="../assets/images/logo.png" alt="" className='w-[10px]' />
+              <img src="public/images/logo.png" alt="" className='w-[10px]' />
             </div>
             <div>
               <div className='font-bold text-[18px]'>Delivery in 8 minutes</div>
