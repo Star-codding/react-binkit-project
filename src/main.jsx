@@ -14,7 +14,7 @@ import PageNotFound from './PageNotFound.jsx'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
@@ -23,5 +23,5 @@ createRoot(document.getElementById('root')).render(
       </Routes>
     </BrowserRouter>
 
-  </StrictMode>,
+  // </StrictMode>,
 )
