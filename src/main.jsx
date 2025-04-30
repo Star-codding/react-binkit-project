@@ -11,43 +11,17 @@ import Footer from './Common/Footer.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Product from './Product.jsx'
 import PageNotFound from './PageNotFound.jsx'
+import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
-          <>
-          {/* <App/> */}
-          <Header/>
-          <Banner/>
-          <Slider/>
-          <Footer/>
-          </>
-        }/>
-
-        <Route path="/section" element={
-          <>
-          <Section/>
-          </>
-        } />
-
-
-      <Route path='/product/:id' element={
-          <>
-          <Product/>
-          </>
-
-        } />
-
-        <Route path='*' element={<PageNotFound/>} />
+        <Route path="/" element={<App />} />
+        <Route path="/section" element={<Section/>} />
+        <Route path="/product/:id" element={<Product/>} />
       </Routes>
-
-      
-
-
-
-      </BrowserRouter>
+    </BrowserRouter>
 
   </StrictMode>,
 )

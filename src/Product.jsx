@@ -47,7 +47,7 @@ export default function Product() {
                     <div className='max-w-[480px] max-h-[480px] mx-auto'>
                         <img src={singleData.thumbnail} alt="" className='w-[100%] h-[100%]' />
                     </div>
-                    <div className='hidden '>
+                    <div className='hidden lg:block'>
                         <Slider {...settings}>
                             <div >
                                 <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/da/cms-assets/cms/product/94c99c0b-0cb1-4c07-b91d-586c5300945b.jpg?ts=1736856488" alt="" className='w-[70px]' />
