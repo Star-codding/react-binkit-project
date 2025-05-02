@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 export default function Payment() {
     return (
         <>
-            <div className='lg:flex items-center max-w-[100%] lg:justify-between lg:p-[5px_15px] shadow '>
+            <div className='flex items-center max-w-[100%] lg:justify-between lg:p-[5px_15px] shadow '>
                 <div>
                     <Link to={"/"}><img src="public/images/logo.png" alt="" className='max-w-[150px] hidden lg:block' /></Link>
                 </div>
-                <div className='sm:text-center sm:p-[15px]'>
+                <div className=' mx-auto p-[15px]'>
                     <p className='font-bold leading-[2px] tracking-widest capitalize  '>Bag..........Address..........Payment</p>
                 </div>
                 <div className='lg:flex items-center max-w-[200px] hidden '>
