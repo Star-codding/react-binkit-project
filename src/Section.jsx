@@ -101,9 +101,6 @@ export default function Section() {
 
                     <div className='grid lg:grid-cols-6  grid-cols-2  justify-around text-center gap-y-[20px] overflow-y-scroll  shadow font-bold gap-[20px] p-[10px] '>
 
-
-
-
                         {data.length > 0 ?
                             data.map((v, i) => {
                                 return (

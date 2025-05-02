@@ -14,18 +14,33 @@ import "../Header.css"
 import logo from "/public/images/logo.png"
 
 export default function Header() {
+
+  let [myproduct, setmyproduct] = useState(0)
+  let addFn = () => {
+    if (myproduct < 10) {
+      setmyproduct(myproduct + 1)
+    }
+  }
+
+  let minFn = () => {
+    if (myproduct > 1) {
+      setmyproduct(myproduct - 1)
+    }
+  }
+
+
   const [showmodal, setshowmodal] = useState(false)
   // console.log(showmodal)
   const modalwork = () => {
     setshowmodal(!showmodal)
   }
-  return (
+  return (  
     <>
-      <div className={`modal ${showmodal == false ? "" : "active"} z-[99] `}>
+      <div className={`modal ${showmodal == false ? "" : "active"} z-[99]`}>
         <div className='bg-[rgb(245,247,253)] h-[100vh]'>
-          <div className='flex justify-between p-[10px] items-center bg-[white]'>
+          <div className='flex justify-between p-[10px] items-center bg-[white]' >
             <div className='font-bold'>My Cart</div>
-            <div onClick={()=>setshowmodal(false)}><GiTireIronCross /></div>
+            <div onClick={() => setshowmodal(false)}><GiTireIronCross /></div>
           </div>
           <div className='flex mt-[30px] p-[15px] bg-white rounded-[15px] m-[15px] '>
             <div>
@@ -43,9 +58,9 @@ export default function Header() {
                   <p>$60</p>
                 </div>
                 <div className='flex  w-[80px] justify-around h-[30px] rounded-[10px] text-[14px] bg-[green] text-white font-bold items-center'>
-                  <button className='text-[18px]'>-</button>
-                  <button>1</button>
-                  <button className='text-[18px]'>+ </button>
+                  <button className='text-[18px]' onClick={minFn}>-</button>
+                  <button>{myproduct}</button>
+                  <button className='text-[18px]' onClick={addFn}>+ </button>
                 </div>
               </div>
             </div>
@@ -56,22 +71,22 @@ export default function Header() {
 
             <div className='flex items-center justify-between p-[5px] text-[15px] font-bold  m-[0px]'>
               <div className='flex items-center'><CiViewList /><span className='ml-[5px]'>Items total</span></div>
-              <div>₹60</div> 
+              <div>₹60</div>
             </div>
 
             <div className='flex items-center justify-between  text-[15px] font-bold p-[0px] m-[0px]'>
               <div className='flex items-center'><MdDeliveryDining /><span className='ml-[5px]'>Delivery charges</span></div>
-              <div>₹25</div> 
+              <div>₹25</div>
             </div>
 
             <div className='flex items-center justify-between  text-[15px] font-bold p-[0px] m-[0px]'>
               <div className='flex items-center'><LiaRupeeSignSolid /><span className='ml-[5px]'>Handling charges</span></div>
-              <div>₹60</div> 
+              <div>₹60</div>
             </div>
 
             <div className='flex items-center justify-between  text-[17px] font-bold p-[0px] m-[0px]'>
               <div ><span className='ml-[5px] '>Grand Total</span></div>
-              <div>₹90</div> 
+              <div>₹90</div>
             </div>
 
 
@@ -82,19 +97,20 @@ export default function Header() {
           <div className='bg-white m-[15px] p-[15px] rounded-[10px]'>
             <div className='text-[15px] font-bold'>Cancellation Policy</div>
             <p className='text-[14px] text-[rgb(54,54,54)]'>
-            Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided, if applicable.</p>
+              Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided, if applicable.</p>
           </div>
 
 
 
           <div className='fixed bottom-0 w-[400px] bg-white'>
-            <div className='flex justify-between p-[5px_15px] border m-[15px] items-center rounded-[10px] bg-[rgb(12,131,31)] text-white'>
-              <div>
+          <Link to={"/Payment"}><div className='flex justify-between p-[5px_15px] border m-[15px] items-center rounded-[10px] bg-[rgb(12,131,31)] text-white'>
+              <div >
                 <h3 className='font-bold'>₹94</h3>
                 <p className='text-[12px] '>TOTAL</p>
               </div>
+              
               <div className='flex items-center text-[19px] '>Login to Proceed <IoIosArrowForward /> </div>
-            </div>
+            </div></Link>
           </div>
         </div>
       </div>
@@ -103,7 +119,7 @@ export default function Header() {
       <div className='hidden lg:block sticky top-[0px]  z-[98]'>
         <div className='grid grid-cols-[10%_20%_auto_8%_10%] bg-[white] items-center cursor-pointer shadow w-[100%] '>
           <div>
-            <Link to={"/"}> <img src="images/logo.png" alt="" className='w-[200px] ' /></Link>
+            <Link to={"/"}> <img src="public/images/logo.png" alt="" className='w-[200px] ' /></Link>
           </div>
           <div className=' text-center'>
             <h3 className='font-bold text-[20px] '>Delivery in 8 Minutes</h3>
@@ -119,9 +135,10 @@ export default function Header() {
           </div>
           <div className='flex items-center justify-center  text-[20px] border p-[5px] mr-[15px] bg-[rgb(12,131,31)] text-white rounded-[10px] '>
             <FaCartShopping />
-            <button className='ml-[10px]' onClick={modalwork} >My Cart</button>
+            <button className='ml-[10px]' onClick={modalwork}>My Cart</button>
+            {/* onClick={modalwork}  */}
           </div>
-        </div>  
+        </div>
       </div>
 
       <div className='block lg:hidden mt-[20px]  '>

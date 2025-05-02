@@ -8,6 +8,7 @@ import axios from 'axios';
 
 export default function Product() { 
 
+    
 
     let pId=useParams().id
         // console.log(pId)
@@ -122,7 +123,7 @@ export default function Product() {
                             <button className='border p-[6px] rounded-[20px] text-[15px] w-[100px] ml-[25px]'>500ml <br />MRP $28</button>
                         </div>
                         <p className='text-[13px] font-bold text-[#ccc] mt-[5px]'>(inclusive  of all taxes)</p>
-                        <button  className='border p-[4px] rounded-[10px] text-[15px] w-[70px] border-[green] text-green mt-[15px]' >ADD</button>
+                        <Link to={"/Payment"}><button  className='border p-[4px] rounded-[10px] text-[15px] w-[70px] border-[green] text-green mt-[15px] cursor-pointer' >ADD</button></Link>
                     </div>  
                     <div className='mt-[10px] p-[25px]'>
                         <h2 className='text-[18px] font-bold'>Why shop from blinkit</h2>

@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Product from './Product.jsx'
 import PageNotFound from './PageNotFound.jsx'
 import App from './App.jsx'
+import Payment from './Payment.jsx'
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/section" element={<Section/>} />
         <Route path="/product/:id" element={<Product/>} />
+        <Route path="/payment" element={<Payment/>} />
       </Routes>
     </BrowserRouter>
 
