@@ -77,7 +77,7 @@ export default function Section() {
         <>
             <Header />
             <div className='max-w-[1220px] m-auto  mt-[5px] bg-[rgb(247,247,250)] mb-[100px]'>
-                <div className='bg-white p-[10px] font-bold shadow mb-[5px] text-[14px]'>Buy Milk Online</div>
+                <div className='bg-white p-[10px] font-bold shadow mb-[5px] text-[18px]'>Buy Product Online</div>
                 <div className='grid lg:grid-cols-[15%_auto] grid-cols-[30%_auto] h-[100vh] '>
                     <div className='flex flex-col h-full bg-[white] p-[15px] text-[14px] overflow-y-scroll shadow'>
 

@@ -11,7 +11,7 @@ import { CiViewList } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import "../Header.css"
 
-import logo from "/public/images/logo.png"
+import logo from "/images/logo.png"
 import { myContext } from '../ContextProvider';
 
 export default function Header() {
@@ -40,12 +40,12 @@ export default function Header() {
 
   // cart work
 
-  let {cartitem,setcartitem}=useContext(myContext)
+  let { cartitem, setcartitem } = useContext(myContext)
   console.log(cartitem)
 
-  
-  
-  return (  
+
+
+  return (
     <>
       <div className={`modal ${showmodal == false ? "" : "active"} z-[99]`}>
         <div className='bg-[rgb(245,247,253)] h-[100vh]'>
@@ -55,7 +55,7 @@ export default function Header() {
           </div>
           <div className='flex mt-[30px] p-[15px] bg-white rounded-[15px] m-[15px] '>
             <div>
-              <img src="public/images/logo.png" alt="" className='w-[10px]' />
+              <img src="/images/logo.png" alt="logo" className='w-[10px]' />
             </div>
             <div>
               <div className='font-bold text-[18px]'>Delivery in 8 minutes</div>
@@ -114,12 +114,12 @@ export default function Header() {
 
 
           <div className='fixed bottom-0 w-[400px] bg-white'>
-          <Link to={"/Payment"}><div className='flex justify-between p-[5px_15px] border m-[15px] items-center rounded-[10px] bg-[rgb(12,131,31)] text-white'>
+            <Link to={"/Payment"}><div className='flex justify-between p-[5px_15px] border m-[15px] items-center rounded-[10px] bg-[rgb(12,131,31)] text-white'>
               <div >
                 <h3 className='font-bold'>₹94</h3>
                 <p className='text-[12px] '>TOTAL</p>
               </div>
-              
+
               <div className='flex items-center text-[19px] '>Login to Proceed <IoIosArrowForward /> </div>
             </div></Link>
           </div>
@@ -143,7 +143,7 @@ export default function Header() {
           </div>
           <div className='text-center   text-[20px]'>
             <button className='block'>Login</button>
-           <Link to={"/payment"}> <button className='block'> Cart  {cartitem.length} </button></Link>
+            <Link to={"/payment"}> <button className='block'> Cart  {cartitem.length} </button></Link>
           </div>
           <div className='flex items-center justify-center  text-[20px] border p-[5px] mr-[15px] bg-[rgb(12,131,31)] text-white rounded-[10px] '>
             <FaCartShopping />
@@ -160,7 +160,7 @@ export default function Header() {
             <p className='flex items-center text-[22px]'>Jhalamand Circle,Jodhpur  <FaCaretDown /></p>
           </div>
           <div className='text-[25px]  p-[10px] justify-center   '>
-           <p > <FaRegUserCircle /> </p> 
+            <p > <FaRegUserCircle /> </p>
             <p > <Link to={"/payment"}> <button className='block'> Cart  {cartitem.length} </button></Link></p>
           </div>
         </div>
