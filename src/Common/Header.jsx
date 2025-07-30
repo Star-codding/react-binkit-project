@@ -11,7 +11,7 @@ import { CiViewList } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import "../Header.css"
 
-import logo from "/images/logo.png"
+// import logo from "/images/logo.png"
 import { myContext } from '../ContextProvider';
 
 export default function Header() {
@@ -130,7 +130,7 @@ export default function Header() {
       <div className='hidden lg:block sticky top-[0px]  z-[98]'>
         <div className='grid grid-cols-[10%_20%_auto_8%_10%] bg-[white] items-center cursor-pointer shadow w-[100%] '>
           <div>
-            <Link to={"/"}> <img src="public/images/logo.png" alt="" className='w-[200px] ' /></Link>
+            <a href={"/"}> <img src="/images/logo.png" alt="" className='w-[200px] ' /></a>
           </div>
           <div className=' text-center'>
             <h3 className='font-bold text-[20px] '>Delivery in 8 Minutes</h3>
