@@ -160,13 +160,13 @@ export default function Header() {
             <p className='flex items-center text-[22px]'>Jhalamand Circle,Jodhpur  <FaCaretDown /></p>
           </div>
           <div className='text-[25px]  p-[10px] justify-center   '>
-            <p > <FaRegUserCircle /> </p>
+            <p className='mx-[20px] ' > <FaRegUserCircle /> </p>
             <p > <Link to={"/payment"}> <button className='block'> Cart  {cartitem.length} </button></Link></p>
           </div>
         </div>
 
 
-        <div className=' flex items-center p-[10px] text-[20px] bg-white rounded-[10px] ml-[20px] border mt-[20px]'>
+        <div className=' flex items-center p-[10px] text-[20px] bg-white rounded-[10px] m-[20px] border'>
           <IoSearch />
           <input type="text" placeholder='Search Your Grocery' className='outline-none ml-[15px] w-100% ' />
         </div>
