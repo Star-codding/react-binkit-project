@@ -13,17 +13,20 @@ import Product from './Product.jsx'
 import PageNotFound from './PageNotFound.jsx'
 import App from './App.jsx'
 import Payment from './Payment.jsx'
+import ContextProvider from './ContextProvider.jsx'
+import Cart from './Cart.jsx'
 
 createRoot(document.getElementById('root')).render(
-  // <StrictMode>
-    <BrowserRouter>
+ <ContextProvider>
+ <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/section" element={<Section/>} />
         <Route path="/product/:id" element={<Product/>} />
         <Route path="/payment" element={<Payment/>} />
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
     </BrowserRouter>
-
-  // </StrictMode>,
+    </ContextProvider>
 )

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from './Common/Header'
 import Footer from './Common/Footer'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { myContext } from './ContextProvider'
 
 export default function Section() {
 
-    
+
 
 
 
@@ -45,6 +46,7 @@ export default function Section() {
         axios.get('https://dummyjson.com/products/categories')
             .then((ress) => {
                 setallcat(ress.data)
+                console.log(ress.data)
             })
             .catch((err) => {
                 console.log(err)
@@ -56,6 +58,7 @@ export default function Section() {
     // console.log(caturl)
     const getcat = (url) => {
         setcaturl(url)
+        // console.log(url)
     }
 
 
@@ -66,6 +69,8 @@ export default function Section() {
         displaydata()
         displayCat()
     }, [caturl])
+
+
 
 
     return (
@@ -81,14 +86,18 @@ export default function Section() {
                             allcat.map((v, i) => {
                                 return (
                                     <>
-                                        <ul className=' hover:bg-[#ccc] cursor-pointer p-[5px] text-left ' onClick={() => getcat(v.url)}>
+                                        <ul className=' hover:bg-[#ccc] cursor-pointer p-[5px] text-left ' onClick={() => getcat(v.url)} >
                                             <li className='font-bold'>{v.name}</li>
                                         </ul>
 
                                     </>)
                             })
                             :
-                            "Wait...."}
+                            <div className='fixed top-[50%] left-[15%]'>
+                                <div className="loader"></div>
+                            </div>
+
+                        }
 
                     </div>
 
@@ -104,9 +113,9 @@ export default function Section() {
                         {data.length > 0 ?
                             data.map((v, i) => {
                                 return (
-                                    <Link to={`/product/${v.id}`}>
+
                                     <div className=' shadow rounded-[10px] text-left  bg-white p-[10px] '>
-                                        <img src={v.thumbnail} alt="" />
+                                        <Link to={`/product/${v.id}`}> <img src={v.thumbnail} alt="" /></Link>
                                         <p>{v.title}</p>
                                         <p className='opacity-[0.3]'>{v.stock}</p>
                                         <div className='flex w-full justify-between mt-[17px] items-center'>
@@ -114,15 +123,18 @@ export default function Section() {
                                                 ${v.price}
                                             </div>
                                             <div className='border mr-[5px] p-[5px_10px] border-[green] text-[green] rounded-[10px] cursor-pointer'>
-                                                <button>ADD</button>
+                                                <button >Add</button>
                                             </div>
                                         </div>
                                     </div>
-                                    </Link> 
+
                                 )
                             })
                             :
-                            "Please Wait"}
+                            <div className='fixed top-[50%] left-[50%]'>
+                                <div class="loader"></div>
+                            </div>
+                        }
 
 
                     </div>

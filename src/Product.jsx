@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Slider from "react-slick";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import Footer from './Common/Footer';
 import Header from './Common/Header';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { CgKey } from 'react-icons/cg';
+import { myContext } from './ContextProvider';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Product() { 
 
@@ -12,12 +15,23 @@ export default function Product() {
 
     let pId=useParams().id
         // console.log(pId)
+
+        let [img,setyImg] = useState([])
+        let [bigImg,setBigImg] = useState()
+
+
     const[singleData,setsingleData]=useState([])
     console.log(singleData)
+
+    
         const singleProduct=()=>{
             axios.get(`https://dummyjson.com/products/${pId}`)
             .then((ress)=>{
                 setsingleData(ress.data);
+                setyImg(ress.data.images)
+                setBigImg(ress.data.thumbnail)
+                console.log(img);
+                
             })
             .catch((err)=>{
                 console.log(err);
@@ -38,6 +52,35 @@ export default function Product() {
     };
 
 
+    // cart work
+
+    let {cartitem,setcartitem}=useContext(myContext)
+    const[have,sethave]=useState(false)
+  
+    const addtocart=()=>{
+
+       let cartobj={
+        id:singleData.id,
+        img:singleData.thumbnail,
+        price:singleData.price,
+        title:singleData.title,
+        quantity:1
+    }
+
+    const isAlreadyInCart = cartitem.some(item => item.id === cartobj.id);
+
+
+    if (!isAlreadyInCart) {
+        setcartitem([...cartitem, cartobj]);
+    } else {
+        toast.error("Item already in cart");
+    }
+
+    sethave(isAlreadyInCart)
+}
+    
+    
+
     return (
         <>
         <Header/>
@@ -46,9 +89,23 @@ export default function Product() {
                 <div className='p-[30px] overflow-y-scroll '>
 
                     <div className='max-w-[480px] max-h-[480px] mx-auto'>
-                        <img src={singleData.thumbnail} alt="" className='w-[100%] h-[100%]' />
+                        <img src={bigImg} alt="" className='w-[100%] h-[100%]' />
                     </div>
-                    <div className='hidden lg:block'>
+
+                    <div className="grid grid-cols-6">
+                        {
+                            img.length > 0 ? 
+                                img.map((v,i)=>{
+                                    return(
+                                        <div className="" key={i}>
+                                            <img src={v} alt="" onClick={()=> setBigImg(v)} />
+                                        </div>
+                                    )
+                                })
+                            : "loading"
+                        }
+                    </div>
+                    {/* <div className='hidden lg:block'>
                         <Slider {...settings}>
                             <div >
                                 <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/da/cms-assets/cms/product/94c99c0b-0cb1-4c07-b91d-586c5300945b.jpg?ts=1736856488" alt="" className='w-[70px]' />
@@ -72,8 +129,9 @@ export default function Product() {
                                 <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=85,metadata=none,w=120,h=120/da/cms-assets/cms/product/1013caf3-73c3-4bc4-b99b-196111691f01.jpg?ts=1736856489" alt="" className='w-[70px]' />
                             </div>
                         </Slider>
-                    </div>
+                    </div> */}
 
+                    <ToastContainer />
 
                     <div >
                         <h1 className='text-[24px] font-semibold mt-[32px] mb-[16px]'>Product Details</h1>
@@ -123,7 +181,7 @@ export default function Product() {
                             <button className='border p-[6px] rounded-[20px] text-[15px] w-[100px] ml-[25px]'>500ml <br />MRP $28</button>
                         </div>
                         <p className='text-[13px] font-bold text-[#ccc] mt-[5px]'>(inclusive  of all taxes)</p>
-                        <Link to={"/Payment"}><button  className='border p-[4px] rounded-[10px] text-[15px] w-[70px] border-[green] text-green mt-[15px] cursor-pointer' >ADD</button></Link>
+                        <button  className='border p-[4px] rounded-[10px] text-[15px] w-[70px] border-[green] text-green mt-[15px] cursor-pointer' onClick={addtocart} > {have==true ? "Added":"Add"} </button>
                     </div>  
                     <div className='mt-[10px] p-[25px]'>
                         <h2 className='text-[18px] font-bold'>Why shop from blinkit</h2>

@@ -14,7 +14,7 @@ export default function SimpleSlider() {
         slidesToScroll: 4,
         responsive: [
             {
-              breakpoint: 768, // Mobile and below
+              breakpoint: 768,
               settings: {
                 slidesToShow: 3,
                 slidesToScroll: 2,
@@ -22,7 +22,7 @@ export default function SimpleSlider() {
               },
             },
             {
-              breakpoint: 480, // Small mobiles
+              breakpoint: 480, 
               settings: {
                 slidesToShow: 3,
                 slidesToScroll: 1,
@@ -41,7 +41,7 @@ export default function SimpleSlider() {
                 <div className='text-[22px] font-bold'>Rolling Paper & tobacco</div>
                 <div className='text-[green] font-bold text-[18px]'>See all</div>
             </div>
-            <div className='max-w-[1200px] mx-auto   p-[15px]'>
+            <div className='max-w-[1200px] mx-auto  p-[15px]'>
                 <Slider {...settings}>
                     <div className=' shadow  rounded-[10px] text-left w-[19%] bg-white m-[3%] p-[15px]'>
                        <Link to={"/section"} ><img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/94c99c0b-0cb1-4c07-b91d-586c5300945b.jpg?ts=1736856488" alt="" /></Link>

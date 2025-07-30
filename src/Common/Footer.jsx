@@ -116,7 +116,6 @@ export default function Footer() {
             <div className='max-w-[1250px] md:mx-auto opacity-[0.6] mx-auto mt-[20px]'>
                 “Blinkit” is owned & managed by "Blink Commerce Private Limited" and is not related, linked or interconnected in whatsoever manner or nature, to “GROFFR.COM” which is a real estate services business operated by “Redstone Consultancy Services Private Limited”.
             </div>
-
         </>
     )
 }

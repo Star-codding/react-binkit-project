@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from './Common/Header'
 import { Link } from 'react-router-dom'
+import { myContext } from './ContextProvider'
 
 export default function Payment() {
+
+
+
+    let { cartitem, setcartitem } = useContext(myContext)
+   
+
     return (
         <>
             <div className='flex items-center max-w-[100%] lg:justify-between lg:p-[5px_15px] shadow '>
@@ -10,7 +17,7 @@ export default function Payment() {
                     <Link to={"/"}><img src="public/images/logo.png" alt="" className='max-w-[150px] hidden lg:block' /></Link>
                 </div>
                 <div className=' mx-auto p-[15px]'>
-                    <p className='font-bold leading-[2px] tracking-widest capitalize  '>Bag..........Address..........Payment</p>
+                    <p className='font-bold leading-[2px] tracking-widest capitalize  '>Cart..........Address..........Payment</p>
                 </div>
                 <div className='lg:flex items-center max-w-[200px] hidden '>
                     <img src="https://constant.myntassets.com/checkout/assets/img/sprite-secure.png" alt="" className='max-w-[26px] h-[28px] mr-[10px]' />
@@ -46,32 +53,25 @@ export default function Payment() {
                         </div>
                     </div>
 
-                    <div className='grid grid-cols-[20%_auto] shadow mt-[20px] p-[15px]'>
-                        <div>
-                            <img src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/da/cms-assets/cms/product/94c99c0b-0cb1-4c07-b91d-586c5300945b.jpg?ts=1736856488" alt="" className='w-[130px]' />
-                        </div>
-                        <div className='  p-[5px_15px]'>
-                            <p className=' text-[15px] font-bold' >Amul Milk </p>
-                            <p className=' text-[14px]'>Pure desi Ghee cowmilk</p>
-                            <p className=' text-[11px]'>Sold by: Flashstar Commerce</p>
-                            <div className='flex m-[5px] max-w-[120px] justify-between '>
-                                <p className=' text-[13px] p-[3px] bg-[rgb(245,245,246)] rounded'>ltr:500ml</p>
-                                <p className='  text-[13px] p-[3px] bg-[bg-[rgb(245,245,246)] rounded'>Qty:1</p>
-                            </div>
-                            <p className=' text-13px'></p>
-                            <p className=' text-13px'><span className='text-[14px] font-bold ' >$645</span> <span className='text-[14px] line-through ml-[10px]'>$1699</span>  <span className='ml-[10px]  text-[hotpink] text-[13px]'>62% OFF</span> </p>
-                            <p className=' text-[11px]'>14 days return available</p>
-                        </div>
-                    </div>
+
+                    {cartitem.length > 0 ?
+                        cartitem.map((v,i) => {
+                            return (
+                                <Cartitem v={v} />
+                            )
+                        })
+                        :
+                        "No items are added"
+                    }
 
 
-                    <div className='shadow mt-[20px] p-[15px]'>
-                        <div className='flex items-center justify-between'>
-                            <img src="https://constant.myntassets.com/checkout/assets/img/products-blurred.webp" alt="" className='max-w-[80px] ' />
-                            <p className='text-[14px] font-bold'>Login to see items from your existing bag and wishlist</p>
-                            <button className='text-[rgb(255,63,108)] text-[13px] font-bold'>LOGIN NOW</button>
-                        </div>
-                    </div>
+                    {/* // id:singleData.id,
+                     // img:singleData.thumbnail,
+                     // price:singleData.price,
+                     // title:singleData.title,
+                     // quantity:1 */}
+
+
 
 
                 </div>
@@ -138,13 +138,13 @@ export default function Payment() {
                                 <p>Shipping Fee <span className='text-[13px] font-bold text-[rgb(255,63,108)]'>Know More</span></p>
                                 <p>Free</p>
                             </div>
-                            <hr className='text-[#ccc]'/>
+                            <hr className='text-[#ccc]' />
                             <div className='flex justify-between text-[15px] p-[3px_15px] font-bold'>
                                 <p>Total Amount </p>
                                 <p>$665</p>
                             </div>
                             <div className='max-w-[100%] text-center border p-[10px] bg-[rgb(255,63,108)] text-white text-[17px] font-bold m-[10px_0px] rounded' >
-                                <p>Place Order</p> 
+                                <p>Place Order</p>
                             </div>
                         </div>
                     </div>
@@ -159,4 +159,64 @@ export default function Payment() {
             </div>
         </>
     )
+
+
+    function Cartitem ({v,i}){
+        const [cartq,setcartq]=useState(v.quantity || 1)
+
+        let inValue=()=>{
+            setcartq(cartq+1)
+        }
+    
+        let deValue=()=>{
+            if(cartq>1){
+            setcartq(cartq-1)
+        }
+
+        let updateObj=()=>{
+            let newData=cartitem.filter((value,index)=>{
+                if(i==index){
+                 return   value.quantity=cartq
+                }
+
+                return value
+            })  
+            setcartitem(newData)
+        }
+    }
+
+    // useEffect(()=>{
+    //     updateObj()
+    // },[cartq])
+
+    console.log(cartitem)
+
+
+        return(
+            <>
+            <div className='grid grid-cols-[20%_auto] shadow mt-[20px] p-[15px]'>
+                                    <div>
+                                        {i}
+                                        <img src={v.img}alt="" className='w-[130px]' />
+                                    </div>
+                                    <div className='  p-[5px_15px]'>
+                                        <p className=' text-[15px] font-bold' >{v.title} </p>
+                                        <p className=' text-[14px]'>Pure desi Ghee cowmilk</p>
+                                        <p className=' text-[11px]'>Sold by: Flashstar Commerce</p>
+                                        <div className='flex m-[5px] max-w-[120px] justify-between '>
+                                            <p className=' text-[13px] p-[3px] bg-[rgb(245,245,246)] rounded'>ltr:500ml</p>
+                                            <p className='  text-[13px] p-[3px] bg-[bg-[rgb(245,245,246)] rounded flex'>
+                                                <button className='border bg-[blue] text-white w-[30px] text-[18px]' onClick={deValue}>-</button>
+                                                <h2  className='border bg-[blue] text-white w-[30px] text-[18px] text-center'>{cartq}</h2>
+                                                <button  className='border bg-[blue] text-white w-[30px] text-[18px]' onClick={inValue}>+</button>
+                                            </p>
+                                        </div>
+                                        <p className=' text-13px'></p>
+                                        <p className=' text-13px'><span className='text-[14px] font-bold ' >{v.price}</span> <span className='text-[14px] line-through ml-[10px]'>$1699</span>  <span className='ml-[10px]  text-[hotpink] text-[13px]'>62% OFF</span> </p>
+                                        <p className=' text-[11px]'>14 days return available</p>
+                                    </div>
+                                </div>
+            </>
+        )
+    } 
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaCaretDown } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { FaCartShopping } from "react-icons/fa6";
@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import "../Header.css"
 
 import logo from "/public/images/logo.png"
+import { myContext } from '../ContextProvider';
 
 export default function Header() {
 
@@ -34,6 +35,16 @@ export default function Header() {
   const modalwork = () => {
     setshowmodal(!showmodal)
   }
+
+
+
+  // cart work
+
+  let {cartitem,setcartitem}=useContext(myContext)
+  console.log(cartitem)
+
+  
+  
   return (  
     <>
       <div className={`modal ${showmodal == false ? "" : "active"} z-[99]`}>
@@ -130,8 +141,9 @@ export default function Header() {
             <IoSearch />
             <input type="text" placeholder='Search Your Grocery' className='outline-none ml-[15px]' />
           </div>
-          <div className='text-center  text-[20px]'>
-            <button>Login</button>
+          <div className='text-center   text-[20px]'>
+            <button className='block'>Login</button>
+           <Link to={"/payment"}> <button className='block'> Cart  {cartitem.length} </button></Link>
           </div>
           <div className='flex items-center justify-center  text-[20px] border p-[5px] mr-[15px] bg-[rgb(12,131,31)] text-white rounded-[10px] '>
             <FaCartShopping />
@@ -147,8 +159,9 @@ export default function Header() {
             <h3 className='font-bold text-[25px] '>Delivery in 8 Minutes</h3>
             <p className='flex items-center text-[22px]'>Jhalamand Circle,Jodhpur  <FaCaretDown /></p>
           </div>
-          <div className='text-[33px]'>
-            <FaRegUserCircle />
+          <div className='text-[25px]  p-[10px] justify-center   '>
+           <p > <FaRegUserCircle /> </p> 
+            <p > <Link to={"/payment"}> <button className='block'> Cart  {cartitem.length} </button></Link></p>
           </div>
         </div>
 
